@@ -35,7 +35,7 @@ Vue.use(IconsPlugin)
 //
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('cart', require('./components/ListA').default);
+Vue.component('cart', require('./components/Cart').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
