@@ -1,7 +1,7 @@
 <template>
     <div>
         <h4>COMMENTS:</h4>
-        <b-form-select v-model="commentSelected" :options="list"></b-form-select>
+        <b-form-select name="comment_id" v-model="commentSelected" :options="list"></b-form-select>
     </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
     data(){
         return {        
             commentSelected: null,
-            list: [{ value: null, text: 'Select a comment' }]
+            list: []
         }
     },
         
@@ -36,7 +36,8 @@ export default {
             });
 
             this.list = [];
-            this.list = [{ value: null, text: 'Select a comment' }, ...this.pluckList(res.data)];
+            this.list = [...this.pluckList(res.data)];
+            this.commentSelected = this.list[0].value;
         }
     }
 }

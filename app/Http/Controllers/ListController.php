@@ -10,4 +10,9 @@ class ListController extends Controller
     {
         return view('list');
     }
+
+    public function saveList(Request $req)
+    {
+        dd($req->all());
+    }
 }

@@ -1,8 +1,8 @@
 <template>
     <div class="flex-center" style="background-color: #88c2df; color: #000000">
         <h4>USERS:</h4>
-         <b-form-select v-model="userSelected" :options="list"></b-form-select>
-         <listPost :userId="userSelected"></listPost>
+        <b-form-select name="user_id" v-model="userSelected" :options="list"></b-form-select>
+        <listPost :userId="userSelected"></listPost>
     </div>
 </template>
 <script>
@@ -12,7 +12,7 @@ export default {
     data() { 
         return {
             userSelected: null,
-            list: [{value: null, text: 'Please select an user.'}]
+            list: []
         }
     },
     
@@ -33,7 +33,8 @@ export default {
             url: 'https://jsonplaceholder.typicode.com/users'
         });
 
-        this.list = [...this.list, ...this.pluckList(res.data)];
+        this.list = [...this.pluckList(res.data)];
+        this.userSelected = this.list[0].value;
     },
 
     components: {listPost: ListPost}

@@ -1,7 +1,7 @@
 <template>
     <div>
         <h4>POST:</h4>
-        <b-form-select v-model="postSelected" :options="list"></b-form-select>
+        <b-form-select name="post_id" v-model="postSelected" :options="list"></b-form-select>
         <listComment :postId="postSelected"></listComment>
     </div>
 </template>
@@ -16,7 +16,7 @@ export default {
     data(){
         return {        
             postSelected: null,
-            list: [{ value: null, text: 'Select a post' }]
+            list: []
         }
     },
         
@@ -38,8 +38,8 @@ export default {
                 url: `https://jsonplaceholder.typicode.com/posts?userId=${val}`
             });
 
-            this.list = [];
-            this.list = [{ value: null, text: 'Select a post' }, ...this.pluckList(res.data)];
+            this.list = [...this.pluckList(res.data)];
+            this.postSelected = this.list[0].value;
         }
     },
 
